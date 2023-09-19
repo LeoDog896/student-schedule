@@ -7,7 +7,7 @@ DEFINE TABLE user SCHEMAFULL;
     DEFINE FIELD firstName ON TABLE user TYPE string;
     DEFINE FIELD lastName ON TABLE user TYPE string;
     DEFINE FIELD email ON TABLE user TYPE string ASSERT string::is::email($value);
-    DEFINE FIELD role ON TABLE user TYPE string ASSERT $value = /admin|teacher|student/;
+    DEFINE FIELD role ON TABLE user TYPE string ASSERT $value INSIDE ["student", "teacher", "admin"];
     DEFINE FIELD organization ON TABLE user TYPE record<organization>;
     DEFINE INDEX userEmailIndex ON TABLE user COLUMNS email UNIQUE;
 
@@ -27,14 +27,14 @@ DEFINE TABLE activity SCHEMAFULL;
     DEFINE FIELD name ON TABLE class TYPE string;
     DEFINE FIELD description ON TABLE class TYPE string;
     DEFINE FIELD organization ON TABLE class TYPE record<organization>;
-    DEFINE FIELD owner ON TABLE class TYPE record<user> ASSERT $value->role = /teacher|admin/;
+    DEFINE FIELD owner ON TABLE class TYPE record<user> ASSERT $value->role INSIDE ["teacher", "admin"];
 
 -- Classes are scheduled activities at a block
 DEFINE TABLE session SCHEMAFULL;
     DEFINE FIELD activity ON TABLE session TYPE record<activity>;
     DEFINE FIELD maxStudents ON TABLE session TYPE int;
-    DEFINE FIELD students ON TABLE class TYPE array<record<user>> ASSERT $value->role = /student/;
-    DEFINE FIELD attendees ON TABLE class TYPE array<record<user>> ASSERT $value->role = /student/;
+    DEFINE FIELD students ON TABLE class TYPE array<record<user>>;
+    DEFINE FIELD attendees ON TABLE class TYPE array<record<user>>;
     DEFINE FIELD block ON TABLE session TYPE record<block>;
     -- We generate a random token that is used for students to mark attendance
     DEFINE FIELD token ON TABLE session TYPE string VALUE rand::int(111111, 999999);
