@@ -16,13 +16,25 @@ DEFINE TABLE user SCHEMAFULL;
 DEFINE TABLE organization SCHEMAFULL;
     DEFINE FIELD name ON TABLE organization TYPE string;
 
+-- Blocks are scheduled time slots
 DEFINE TABLE block SCHEMAFULL;
     DEFINE FIELD from ON TABLE block TYPE datetime;
     DEFINE FIELD to ON TABLE block TYPE datetime;
+    DEFINE FIELD organization ON TABLE block TYPE record<organization>;
 
-DEFINE TABLE class SCHEMAFULL;
+-- Activites are things to be scheduled
+DEFINE TABLE activity SCHEMAFULL;
     DEFINE FIELD name ON TABLE class TYPE string;
+    DEFINE FIELD description ON TABLE class TYPE string;
     DEFINE FIELD organization ON TABLE class TYPE record<organization>;
     DEFINE FIELD owner ON TABLE class TYPE record<user> ASSERT $value->role = /teacher|admin/;
-    DEFINE FIELD block ON TABLE class TYPE record<block>;
+
+-- Classes are scheduled activities at a block
+DEFINE TABLE session SCHEMAFULL;
+    DEFINE FIELD activity ON TABLE session TYPE record<activity>;
+    DEFINE FIELD maxStudents ON TABLE session TYPE int;
     DEFINE FIELD students ON TABLE class TYPE array<record<user>> ASSERT $value->role = /student/;
+    DEFINE FIELD attendees ON TABLE class TYPE array<record<user>> ASSERT $value->role = /student/;
+    DEFINE FIELD block ON TABLE session TYPE record<block>;
+    -- We generate a random token that is used to join the class
+    DEFINE FIELD token ON TABLE session TYPE string VALUE rand::uuid::v7();
