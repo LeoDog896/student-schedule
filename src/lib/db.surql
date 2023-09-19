@@ -36,5 +36,5 @@ DEFINE TABLE session SCHEMAFULL;
     DEFINE FIELD students ON TABLE class TYPE array<record<user>> ASSERT $value->role = /student/;
     DEFINE FIELD attendees ON TABLE class TYPE array<record<user>> ASSERT $value->role = /student/;
     DEFINE FIELD block ON TABLE session TYPE record<block>;
-    -- We generate a random token that is used to join the class
-    DEFINE FIELD token ON TABLE session TYPE string VALUE rand::uuid::v7();
+    -- We generate a random token that is used for students to mark attendance
+    DEFINE FIELD token ON TABLE session TYPE string VALUE rand::int(111111, 999999);
