@@ -1,29 +1,26 @@
 <script>
-	import Navbar from "$lib/components/Navbar.svelte";
+	import Navbar from '$lib/components/Navbar.svelte';
 </script>
 
 <div class="wrap">
-	<Navbar/>
+	<Navbar />
 	<div class="content">
-		<slot/>
+		<slot />
 	</div>
-	
 </div>
 
-
 <style>
-	@import url("https://use.typekit.net/ypw7fxj.css");
+	@import url('https://use.typekit.net/ypw7fxj.css');
 	:global(body) {
-		font-family: "proxima-nova", sans-serif;
+		font-family: 'proxima-nova', sans-serif;
 		--bodyColor: #f1f1f1;
 		--textDark: #333;
 		--textLight: #fff;
 		--accent1: #333;
 		--accent2: #555;
-		--blue: #0064C1;
+		--blue: #0064c1;
 		margin: 0;
-		background: var(--bodyColor)
-		
+		background: var(--bodyColor);
 	}
 
 	.wrap {

@@ -1,5 +1,4 @@
 <script>
-
 </script>
 
 <nav>
@@ -53,7 +52,7 @@
 		font-size: 1.1rem;
 	}
 	.button::after {
-		content: "";
+		content: '';
 		position: absolute;
 		bottom: 0;
 		left: 0;
@@ -61,7 +60,13 @@
 		height: 1px;
 		background-size: 300%;
 		background-position: 100%;
-		background-image: linear-gradient(90deg, var(--textLight), var(--textLight) 34%,  transparent 65%, transparent);
+		background-image: linear-gradient(
+			90deg,
+			var(--textLight),
+			var(--textLight) 34%,
+			transparent 65%,
+			transparent
+		);
 		transition: background-position 0.3s ease-in-out;
 	}
 	.button:hover::after {

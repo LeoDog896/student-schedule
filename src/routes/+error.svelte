@@ -1,7 +1,7 @@
 <div class="wrap">
 	<div class="subWrap">
 		<h1>404</h1>
-		<hr>
+		<hr />
 		<p>Page not found</p>
 	</div>
 </div>
