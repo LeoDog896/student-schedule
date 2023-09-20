@@ -1,29 +1,28 @@
 <script lang="ts">
-	import Activity from "./Activity.svelte";
+	import Activity from './Activity.svelte';
 	type activityList = [
 		{
 			//idk what to put here
 			//essentially a list of activities containing the name, start time, end time, and day based on the selected start day
 		}
-	]
+	];
 
 	//constant stuff
-	const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+	const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 	export let visibleDays: number;
 	export let startDay: Date;
 
 	$: console.log(startDay);
 
-
 	//functions
 	let fixDate = (addDays: number) => {
-		console.log(startDay.getDay())
-		let newDate = new Date(startDay.getTime() + addDays * 24 * 60 * 60 * 1000)
+		console.log(startDay.getDay());
+		let newDate = new Date(startDay.getTime() + addDays * 24 * 60 * 60 * 1000);
 		let day = newDate.getDate();
 		let weekday = newDate.getDay();
 
 		return `${weekdays[weekday]}, ${day}`;
-	}
+	};
 </script>
 
 <div class="wrap">
@@ -38,7 +37,7 @@
 			<button class="button">Join Activity</button>
 		</div>
 		{/each}
-	</div>	
+	</div>
 </div>
 
 <style>
@@ -58,10 +57,9 @@
 		flex-direction: column;
 		align-items: center;
 		position: relative;
-		
 	}
 	.day::before {
-		content: "";
+		content: '';
 		position: absolute;
 		width: 100%;
 		height: 100%;

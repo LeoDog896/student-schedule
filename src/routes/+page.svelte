@@ -1,50 +1,51 @@
 <script lang="ts">
-	import { get } from "svelte/store";
-	import DayScheduler from "$lib/components/DayScheduler.svelte";
+	import { get } from 'svelte/store';
+	import DayScheduler from '$lib/components/DayScheduler.svelte';
 
 	//types
-	type selectedViewString = "day" | "5day" | "week" | "month";
+	type selectedViewString = 'day' | '5day' | 'week' | 'month';
 
 	//variables
-	let selectedView: selectedViewString = "5day";
+	let selectedView: selectedViewString = '5day';
 	let visibleDays = 5;
 	let startDay = new Date();
 
 	//the other stuff
 	let updateView = (selected: MouseEvent) => {
 		let buttonId = (selected.target as HTMLButtonElement).id;
-		if(buttonId == "1daypick") {
-			selectedView = "day";
+		if (buttonId == '1daypick') {
+			selectedView = 'day';
 			visibleDays = 1;
 			startDay = new Date();
-		} else if (buttonId == "5daypick") {
-			selectedView = "5day";
+		} else if (buttonId == '5daypick') {
+			selectedView = '5day';
 			visibleDays = 5;
 			startDay = new Date();
-		} else if (buttonId == "weekpick") {
-			selectedView = "week";
+		} else if (buttonId == 'weekpick') {
+			selectedView = 'week';
 			visibleDays = 5;
 			//change the start day to the start of the week
-			startDay = new Date(Date.now() - new Date().getDay() * 24 * 60 * 60 * 1000 + 1 * 24 * 60 * 60 * 1000);
-			console.log(startDay)
-		} else if (buttonId == "monthPick") {
-			selectedView = "month";
+			startDay = new Date(
+				Date.now() - new Date().getDay() * 24 * 60 * 60 * 1000 + 1 * 24 * 60 * 60 * 1000
+			);
+			console.log(startDay);
+		} else if (buttonId == 'monthPick') {
+			selectedView = 'month';
 			visibleDays = 0;
 			startDay = new Date();
 		}
-	}
+	};
 
 	let resetStartDay = () => {
 		visibleDays = 1;
 		startDay = new Date();
-	}
-
+	};
 </script>
 
 <div class="wrap">
 	<div class="display">
 		{#key selectedView}
-			<DayScheduler {visibleDays} {startDay}/>
+			<DayScheduler {visibleDays} {startDay} />
 		{/key}
 	</div>
 	<div class="controlBar">
@@ -53,10 +54,18 @@
 			<!-- date picker -->
 		</div>
 		<div class="viewPicker">
-			<button class:buttonActive={selectedView == "day"} id="1daypick" on:click={updateView}>Day</button>
-			<button class:buttonActive={selectedView == "5day"} id="5daypick" on:click={updateView}>5 Day</button>
-			<button class:buttonActive={selectedView == "week"} id="weekpick" on:click={updateView}>Week</button>
-			<button class:buttonActive={selectedView == "month"} id="monthPick" on:click={updateView}>Month</button>
+			<button class:buttonActive={selectedView == 'day'} id="1daypick" on:click={updateView}
+				>Day</button
+			>
+			<button class:buttonActive={selectedView == '5day'} id="5daypick" on:click={updateView}
+				>5 Day</button
+			>
+			<button class:buttonActive={selectedView == 'week'} id="weekpick" on:click={updateView}
+				>Week</button
+			>
+			<button class:buttonActive={selectedView == 'month'} id="monthPick" on:click={updateView}
+				>Month</button
+			>
 		</div>
 	</div>
 </div>
@@ -101,7 +110,7 @@
 	}
 
 	button::after {
-		content: "";
+		content: '';
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -119,6 +128,4 @@
 	.buttonActive::after {
 		opacity: 0.5 !important;
 	}
-
-
 </style>

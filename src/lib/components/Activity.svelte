@@ -1,9 +1,21 @@
 <div class="wrap">
 	<h2>Dylan's Study Block</h2>
-	<div class="row"><img src="/icons/instructor.svg" alt="instructor"/><p>Dylan Myers</p></div>
-	<div class="row"><img src="/icons/location.svg" alt="location"/><p>Room 131</p></div>
-	<div class="row"><img src="/icons/group.svg" alt="location"/><p>17/20</p></div>
-	<div class="row"><img src="/icons/activity.svg" alt="location"/><p>Tutoring</p></div>
+	<div class="row">
+		<img src="/icons/instructor.svg" alt="instructor" />
+		<p>Dylan Myers</p>
+	</div>
+	<div class="row">
+		<img src="/icons/location.svg" alt="location" />
+		<p>Room 131</p>
+	</div>
+	<div class="row">
+		<img src="/icons/group.svg" alt="location" />
+		<p>17/20</p>
+	</div>
+	<div class="row">
+		<img src="/icons/activity.svg" alt="location" />
+		<p>Tutoring</p>
+	</div>
 </div>
 
 <style>
@@ -22,7 +34,7 @@
 		margin: 0px;
 	}
 	.wrap::after {
-		content: "";
+		content: '';
 		position: absolute;
 		bottom: 0;
 		left: 0;
@@ -44,5 +56,4 @@
 		margin-right: 5px;
 		opacity: 0.7;
 	}
-
 </style>
