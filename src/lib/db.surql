@@ -11,7 +11,12 @@ DEFINE TABLE user SCHEMAFULL;
     DEFINE FIELD organization ON TABLE user TYPE record<organization>;
     DEFINE INDEX userEmailIndex ON TABLE user COLUMNS email UNIQUE;
 
-    DEFINE SCOPE user SESSION 1d;
+    DEFINE FIELD tokenAssigned on TABLE user TYPE datetime;
+    DEFINE FIELD token ON TABLE user TYPE string;
+
+    DEFINE SCOPE user SESSION 1d
+        SIGNIN (SELECT * FROM user WHERE email = $email AND token = $token)
+    ;
 
 DEFINE TABLE organization SCHEMAFULL;
     DEFINE FIELD name ON TABLE organization TYPE string;
