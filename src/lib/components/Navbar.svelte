@@ -5,7 +5,7 @@
 	<a class="siteName" href="/"><h1>Site Name</h1></a>
 	<div class="buttons">
 		<a href="/admin" class="button">Admin</a>
-		<a href="/teacher" class="button">Teacher</a>
+		<a href="/teacher/attendance" class="button">Teacher</a>
 		<a href="/" class="button">Schedule</a>
 		<a href="/attendance" class="button">Attendance</a>
 		<a href="/help" class="button">Help</a>
