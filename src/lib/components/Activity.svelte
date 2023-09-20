@@ -25,6 +25,7 @@
 		color: var(--textDark);
 		padding: 10px;
 		box-sizing: border-box;
+		border: 3px;
 	}
 	.wrap h2 {
 		margin: 0px;
@@ -42,6 +43,7 @@
 		background: var(--blue);
 		opacity: 0.2;
 		z-index: -1;
+		border: 3px;
 	}
 	.row {
 		display: flex;
