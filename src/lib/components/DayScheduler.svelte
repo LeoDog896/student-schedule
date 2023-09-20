@@ -72,22 +72,10 @@
 		padding: 10px 30px;
 		background: transparent;
 		border: none;
-		color: var(--textLight);
+		color: var(--textDark);
 		font-size: 1.1rem;
 		z-index: 3;
 		cursor: pointer;
-		border-radius: 3px;
-	}
-
-	button::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		z-index: -2;
-		width: 100%;
-		height: 100%;
-		background: var(--accent2);
 		border-radius: 3px;
 	}
 
@@ -106,6 +94,6 @@
 		border-radius: 3px;
 	}
 	button:hover::after {
-		opacity: 1 !important;
+		opacity: 0.5 !important;
 	}
 </style>
