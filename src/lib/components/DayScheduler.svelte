@@ -34,9 +34,8 @@
 			<!-- Temporary, for display only -->
 			{#if i % 2 == 0}
 				<Activity/>
-			{:else}
-				<button>Join Activity</button>
 			{/if}
+			<button class="button">Join Activity</button>
 		</div>
 		{/each}
 	</div>	
@@ -68,5 +67,47 @@
 		height: 100%;
 		outline: 1px solid var(--textDark);
 		opacity: 0.2;
+	}
+	button {
+		margin: 10px 0px;
+		position: relative;
+		padding: 10px 30px;
+		background: transparent;
+		border: none;
+		color: var(--textLight);
+		font-size: 1.1rem;
+		z-index: 3;
+		cursor: pointer;
+		border-radius: 3px;
+	}
+
+	button::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -2;
+		width: 100%;
+		height: 100%;
+		background: var(--accent2);
+		border-radius: 3px;
+	}
+
+	button::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+		width: 100%;
+		height: 100%;
+		border-radius: 3px;
+		background: var(--blue);
+		transform-origin: left;
+		opacity: 0.2;
+		border-radius: 3px;
+	}
+	button:hover::after {
+		opacity: 1 !important;
 	}
 </style>
