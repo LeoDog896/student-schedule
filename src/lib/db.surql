@@ -9,7 +9,11 @@ DEFINE TABLE api SCHEMAFULL;
     DEFINE FIELD password ON TABLE api TYPE string;
     DEFINE FIELD identifier ON TABLE api TYPE string VALUE "api";
     DEFINE SCOPE api SESSION 1d
-        SIGNIN (SELECT * FROM api WHERE password = $password)
+        SIGNIN (SELECT * FROM api WHERE crypto::argon2::compare($password, password));
+
+DEFINE FUNCTION fn::registerAPI($description: string, $password: string) {
+    CREATE api SET description = $description, password = crypto::argon2::generate($password);
+};
 
 -- Define our tables
 DEFINE TABLE user SCHEMAFULL
