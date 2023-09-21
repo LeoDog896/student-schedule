@@ -1,4 +1,5 @@
 import { Surreal } from 'surrealdb.js';
+import type { ActionResult } from 'surrealdb.js/script/types';
 
 const db = new Surreal();
 
@@ -10,11 +11,15 @@ async function main() {
     });
 }
 
-export async function getOrganizations(): Promise<Record<string, string>[]> {
-    await main();
-    const { result } = (await db.query('SELECT * FROM organization'))[0];
+type Organization = {
+    name: string;
+}
 
-    return result as Record<string, string>[];
+export async function getOrganizations(): Promise<ActionResult<Organization>[]> {
+    await main();
+    const result = await db.select<Organization>('organization');
+
+    return result;
 }
 
 main();
