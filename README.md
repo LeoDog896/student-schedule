@@ -6,6 +6,8 @@ Easy flex block manager for students, teachers, and administrators.
 
 We use [SurrealDB](https://surrealdb.com/) for our database. To debug it, feel free to use [surrealist](https://surrealist.app/).
 
+We require the `--allow-guests` capability to serve some of our public endpoints.
+
 ### Quick Start
 
 Start up the web server:
@@ -17,6 +19,6 @@ yarn dev
 Start up the database:
 
 ```sh
-surreal start memory --auth --user root --pass root
+surreal start memory --allow-guests --auth --user root --pass root
 surreal import --conn http://localhost:8000 --user root --pass root --ns schedule --db schedule src/lib/db.surql
 ```

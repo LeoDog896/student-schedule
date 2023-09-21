@@ -28,7 +28,6 @@
 			startDay = new Date(
 				Date.now() - new Date().getDay() * 24 * 60 * 60 * 1000 + 1 * 24 * 60 * 60 * 1000
 			);
-			console.log(startDay);
 		} else if (buttonId == 'monthPick') {
 			selectedView = 'month';
 			visibleDays = 0;

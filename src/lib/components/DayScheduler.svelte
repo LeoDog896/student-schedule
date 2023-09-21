@@ -2,21 +2,18 @@
 	import Activity from './Activity.svelte';
 	type activityList = [
 		{
-			//idk what to put here
-			//essentially a list of activities containing the name, start time, end time, and day based on the selected start day
+			// idk what to put here
+			// essentially a list of activities containing the name, start time, end time, and day based on the selected start day
 		}
 	];
 
-	//constant stuff
+	// constant stuff
 	const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 	export let visibleDays: number;
 	export let startDay: Date;
 
-	$: console.log(startDay);
-
 	//functions
 	let fixDate = (addDays: number) => {
-		console.log(startDay.getDay());
 		let newDate = new Date(startDay.getTime() + addDays * 24 * 60 * 60 * 1000);
 		let day = newDate.getDate();
 		let weekday = newDate.getDay();

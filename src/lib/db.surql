@@ -7,7 +7,6 @@ DEFINE DATABASE schedule;
 DEFINE TABLE api SCHEMAFULL;
     DEFINE FIELD description ON TABLE api TYPE string;
     DEFINE FIELD password ON TABLE api TYPE string;
-    DEFINE FIELD identifier ON TABLE api TYPE string VALUE "api";
     DEFINE SCOPE api SESSION 1d
         SIGNIN (SELECT * FROM api WHERE crypto::argon2::compare($password, password));
 
@@ -19,7 +18,7 @@ DEFINE FUNCTION fn::registerAPI($description: string, $password: string) {
 DEFINE TABLE user SCHEMAFULL
     PERMISSIONS
         FOR create
-            WHERE $auth.identifier = "api";
+            WHERE $scope = api;
     DEFINE FIELD firstName ON TABLE user TYPE string;
     DEFINE FIELD lastName ON TABLE user TYPE string;
     DEFINE FIELD email ON TABLE user TYPE string ASSERT string::is::email($value);
@@ -38,7 +37,7 @@ DEFINE TABLE user SCHEMAFULL
         -- Also, signup must happen with the `api` scope.
     ;
 
-DEFINE TABLE organization SCHEMAFULL;
+DEFINE TABLE organization SCHEMAFULL PERMISSIONS FOR select FULL, for create, delete, update NONE;
     DEFINE FIELD name ON TABLE organization TYPE string;
     DEFINE FIELD signupType ON TABLE organization TYPE string ASSERT $value INSIDE ["password", "oauth"];
 
@@ -50,17 +49,17 @@ DEFINE TABLE block SCHEMAFULL;
 
 -- Activites are things to be scheduled
 DEFINE TABLE activity SCHEMAFULL;
-    DEFINE FIELD name ON TABLE class TYPE string;
-    DEFINE FIELD description ON TABLE class TYPE string;
-    DEFINE FIELD organization ON TABLE class TYPE record<organization>;
-    DEFINE FIELD owner ON TABLE class TYPE record<user> ASSERT $value->role INSIDE ["teacher", "admin"];
+    DEFINE FIELD name ON TABLE activity TYPE string;
+    DEFINE FIELD description ON TABLE activity TYPE string;
+    DEFINE FIELD organization ON TABLE activity TYPE record<organization>;
+    DEFINE FIELD owner ON TABLE activity TYPE record<user> ASSERT $value->role INSIDE ["teacher", "admin"];
 
 -- Classes are scheduled activities at a block
 DEFINE TABLE session SCHEMAFULL;
     DEFINE FIELD activity ON TABLE session TYPE record<activity>;
     DEFINE FIELD maxStudents ON TABLE session TYPE int;
-    DEFINE FIELD students ON TABLE class TYPE array<record<user>>;
-    DEFINE FIELD attendees ON TABLE class TYPE array<record<user>>;
+    DEFINE FIELD students ON TABLE session TYPE array<record<user>>;
+    DEFINE FIELD attendees ON TABLE session TYPE array<record<user>>;
     DEFINE FIELD block ON TABLE session TYPE record<block>;
     -- We generate a random token that is used for students to mark attendance
     DEFINE FIELD token ON TABLE session TYPE string VALUE rand::int(111111, 999999);
