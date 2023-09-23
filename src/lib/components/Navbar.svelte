@@ -30,7 +30,7 @@
 		margin: 0px;
 		line-height: 50px;
 		white-space: nowrap;
-  		overflow: visible;
+		overflow: visible;
 		padding: 0px 20px;
 		box-sizing: border-box;
 	}

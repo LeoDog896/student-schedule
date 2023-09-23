@@ -25,14 +25,14 @@
 <div class="wrap">
 	<div class="days">
 		{#each Array(visibleDays) as day, i}
-		<div class="day">
-			<p>{fixDate(i)}</p>
-			<!-- Temporary, for display only -->
-			{#if i % 2 == 0}
-				<Activity/>
-			{/if}
-			<button class="button">Join Activity</button>
-		</div>
+			<div class="day">
+				<p>{fixDate(i)}</p>
+				<!-- Temporary, for display only -->
+				{#if i % 2 == 0}
+					<Activity />
+				{/if}
+				<button class="button">Join Activity</button>
+			</div>
 		{/each}
 	</div>
 </div>
@@ -77,7 +77,7 @@
 	}
 
 	button::after {
-		content: "";
+		content: '';
 		position: absolute;
 		top: 0;
 		left: 0;
