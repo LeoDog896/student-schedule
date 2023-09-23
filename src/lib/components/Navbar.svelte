@@ -29,7 +29,8 @@
 	nav h1 {
 		margin: 0px;
 		line-height: 50px;
-		text-wrap: nowrap;
+		white-space: nowrap;
+  		overflow: visible;
 		padding: 0px 20px;
 		box-sizing: border-box;
 	}
