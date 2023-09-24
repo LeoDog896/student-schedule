@@ -17,7 +17,7 @@
 		--textDark: #333;
 		--textLight: #fff;
 		--accent1: #333;
-		--accent2: #555;
+		--accent2: #e1e1e1;
 		--blue: #0064c1;
 		margin: 0;
 		background: var(--bodyColor);

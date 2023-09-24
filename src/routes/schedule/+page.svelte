@@ -96,13 +96,14 @@
 	.viewPicker {
 		display: flex;
 		flex-direction: row;
+		border: 0px;
 	}
 	button {
 		position: relative;
 		padding: 10px 30px;
 		background: transparent;
 		border: none;
-		color: var(--textLight);
+		color: var(--textDark);
 		font-size: 1.1rem;
 		z-index: 3;
 		cursor: pointer;
@@ -120,6 +121,9 @@
 		background: var(--blue);
 		transform-origin: left;
 		opacity: 0.2;
+	}
+	button:hover {
+		color: var(--textLight);
 	}
 	button:hover::after {
 		opacity: 1 !important;

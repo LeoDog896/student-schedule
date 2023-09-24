@@ -58,9 +58,11 @@
 	.day::before {
 		content: '';
 		position: absolute;
-		width: 100%;
+		top: 0px;
+		right: 0px;
+		width: 1px;
 		height: 100%;
-		outline: 1px solid var(--textDark);
+		background: var(--textDark);
 		opacity: 0.2;
 	}
 	button {
