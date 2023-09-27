@@ -22,3 +22,9 @@ Start up the database:
 surreal start memory --allow-guests --auth --user root --pass root
 surreal import --conn http://localhost:8000 --user root --pass root --ns schedule --db schedule src/lib/db.surql
 ```
+
+If you're in a dev environment, make sure to also run:
+
+```sh
+surreal import --conn http://localhost:8000 --user root --pass root --ns schedule --db schedule src/lib/test.surql
+```
