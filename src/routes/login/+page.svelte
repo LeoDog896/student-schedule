@@ -1,53 +1,50 @@
 <script lang="ts">
-	import { getOrganizations } from '$lib/database/client';
-
-	let organizations = getOrganizations();
 </script>
 
-<main>
-	<h1>Schools</h1>
+<svelte:head>
+	<title>Login Portal</title>
+</svelte:head>
 
-	{#await organizations}
-		<p>loading...</p>
-	{:then awaitedOrganizations}
-		{#if awaitedOrganizations}
-			{#each awaitedOrganizations as organization}
-				<a href={`/login/${organization.slug}`}>{organization.name}</a>
-			{/each}
-		{/if}
-	{:catch error}
-		<p>{error.message}</p>
-	{/await}
+<main>
+	<h1>Login Portal</h1>
+	<p>Login with ClassLink</p>
+	<p><b>OR</b></p>
+	<p>Login with Email and Password</p>
+	<form class="login">
+		<label for="email">Email</label>
+		<input type="text" id="username" name="username" />
+		<label for="password">Password</label>
+		<input type="password" id="password" name="password" />
+		<button>Login</button>
+	</form>
 </main>
 
 <style>
 	main {
-		max-width: 800px;
 		margin: 0 auto;
-		padding: 0 4rem;
-	}
-
-	a {
-		display: block;
-		width: 100%;
-		padding: 1rem;
-		margin: 0.5rem 0;
-		border: none;
-		border-radius: 0.5rem;
-		background: var(--blue);
-		color: var(--textLight);
-		font-size: 1.5rem;
-		font-weight: 600;
-		cursor: pointer;
+		max-width: 20rem;
 		text-align: center;
-		text-decoration: none;
 	}
 
-	a:hover {
-		background: var(--blueHover);
+	.login {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
 	}
 
-	a:active {
-		background: var(--blueActive);
+	.login > * {
+		margin: 0.5rem;
+	}
+
+	.login > input {
+		width: 100%;
+	}
+
+	.login > label {
+		text-align: left;
+	}
+
+	.login > button {
+		width: 100%;
 	}
 </style>
