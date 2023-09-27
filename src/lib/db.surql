@@ -41,6 +41,7 @@ DEFINE TABLE organization SCHEMAFULL PERMISSIONS FOR select FULL, for create, de
     DEFINE FIELD slug ON TABLE organization TYPE string;
     DEFINE FIELD name ON TABLE organization TYPE string;
     DEFINE FIELD signupType ON TABLE organization TYPE string ASSERT $value INSIDE ["password", "classlink"];
+    DEFINE INDEX slugIndex ON TABLE organization COLUMNS slug UNIQUE;
 
 -- Blocks are scheduled time slots
 DEFINE TABLE block SCHEMAFULL;

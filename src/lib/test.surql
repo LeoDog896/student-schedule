@@ -10,4 +10,13 @@ CREATE organization SET name = "School Alpha", signupType = "password", slug = "
 CREATE organization SET name = "School Beta", signupType = "password", slug = "beta";
 CREATE organization SET name = "School Theta", signupType = "classlink", slug = "theta";
 
--- 
+-- Set up accounts
+CREATE user CONTENT {
+    firstName: "Normalized",
+    lastName: "Vector",
+    email: "normal.vector@school.com",
+    role: "student",
+    organization: array::first((SELECT id FROM organization WHERE slug == "theta").id),
+
+    password: crypto::argon2::generate("student"),
+};
