@@ -3,6 +3,10 @@
 	export let data: PageData;
 </script>
 
+<svelte:head>
+	<title>{data.name} Portal</title>
+</svelte:head>
+
 <main>
 	<h1>{data.name} Portal</h1>
 	{#if data.signupType == "classlink"}
