@@ -4,7 +4,6 @@ import type { ActionResult } from 'surrealdb.js/script/types';
 const db = new Surreal();
 
 async function main() {
-	if (!globalThis.window) return;
 	await db.connect('http://127.0.0.1:8000/rpc', {
 		ns: 'schedule',
 		db: 'schedule'
@@ -21,6 +20,13 @@ export async function getOrganizations(): Promise<ActionResult<Organization>[]> 
 	const result = await db.select<Organization>('organization');
 
 	return result;
+}
+
+export async function getOrganization(slug: string): Promise<Organization | undefined> {
+	await main();
+	const result = await db.query("SELECT * FROM organization WHERE slug = $slug", { slug });
+
+	return result[0].result as Organization | undefined;
 }
 
 main();

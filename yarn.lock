@@ -1485,10 +1485,10 @@ supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
-surrealdb.js@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/surrealdb.js/-/surrealdb.js-0.9.0.tgz#e26ee17738bc3bdb0522f75f6b301ef69550bcee"
-  integrity sha512-JV1lSzeSF4GftfxSvrOd0fDAw0AwRTSTsn+smp4BzhVuvcfJH/2zceEMwsMLzQcUao386pq4xk5JKoieayFJqQ==
+surrealdb.js@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/surrealdb.js/-/surrealdb.js-0.9.1.tgz#0a28b425f3c5aba8831fc07626fd24492059f399"
+  integrity sha512-Lw7gds+u5966ng00/yOOkeW90VFj2tI5YNZ1cY7t9fyl9yEEcrFOkR5djqXwuJ1V3ORVORP5l+Hv2N6Sfgh5PQ==
   dependencies:
     unws "^0.2.3"
     ws "^8.13.0"
