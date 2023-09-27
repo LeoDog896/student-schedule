@@ -40,7 +40,7 @@ DEFINE TABLE user SCHEMAFULL
 DEFINE TABLE organization SCHEMAFULL PERMISSIONS FOR select FULL, for create, delete, update NONE;
     DEFINE FIELD slug ON TABLE organization TYPE string;
     DEFINE FIELD name ON TABLE organization TYPE string;
-    DEFINE FIELD signupType ON TABLE organization TYPE string ASSERT $value INSIDE ["password", "oauth"];
+    DEFINE FIELD signupType ON TABLE organization TYPE string ASSERT $value INSIDE ["password", "classlink"];
 
 -- Blocks are scheduled time slots
 DEFINE TABLE block SCHEMAFULL;

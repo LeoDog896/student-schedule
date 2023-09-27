@@ -17,6 +17,7 @@ async function ready() {
 type Organization = {
 	name: string;
 	slug: string;
+	signupType: "password" | "classlink";
 };
 
 export async function getOrganizations(): Promise<ActionResult<Organization>[]> {
