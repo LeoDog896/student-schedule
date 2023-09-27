@@ -13,6 +13,7 @@ async function main() {
 
 type Organization = {
 	name: string;
+	slug: string;
 };
 
 export async function getOrganizations(): Promise<ActionResult<Organization>[]> {

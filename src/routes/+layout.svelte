@@ -19,6 +19,8 @@
 		--accent1: #333;
 		--accent2: #e1e1e1;
 		--blue: #0064c1;
+		--blueHover: #0078e9;
+		--blueActive: #0057a8;
 		margin: 0;
 		background: var(--bodyColor);
 	}
