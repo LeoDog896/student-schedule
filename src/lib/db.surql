@@ -23,7 +23,7 @@ DEFINE TABLE user SCHEMAFULL
     DEFINE FIELD lastName ON TABLE user TYPE string;
     DEFINE FIELD email ON TABLE user TYPE string ASSERT string::is::email($value);
     DEFINE FIELD role ON TABLE user TYPE string ASSERT $value INSIDE ["student", "teacher", "admin"];
-    DEFINE FIELD organization ON TABLE user TYPE record;
+    DEFINE FIELD organization ON TABLE user TYPE record<organization>;
     DEFINE INDEX userEmailIndex ON TABLE user COLUMNS email UNIQUE;
 
     -- Authentication - either password or token
@@ -46,21 +46,21 @@ DEFINE TABLE organization SCHEMAFULL PERMISSIONS FOR select FULL, for create, de
 DEFINE TABLE block SCHEMAFULL;
     DEFINE FIELD from ON TABLE block TYPE datetime;
     DEFINE FIELD to ON TABLE block TYPE datetime;
-    DEFINE FIELD organization ON TABLE block TYPE record;
+    DEFINE FIELD organization ON TABLE block TYPE record<organization>;
 
 -- Activites are things to be scheduled
 DEFINE TABLE activity SCHEMAFULL;
     DEFINE FIELD name ON TABLE activity TYPE string;
     DEFINE FIELD description ON TABLE activity TYPE string;
-    DEFINE FIELD organization ON TABLE activity TYPE record;
-    DEFINE FIELD owner ON TABLE activity TYPE record ASSERT $value->role INSIDE ["teacher", "admin"];
+    DEFINE FIELD organization ON TABLE activity TYPE record<organization>;
+    DEFINE FIELD owner ON TABLE activity TYPE record<user> ASSERT $value->role INSIDE ["teacher", "admin"];
 
 -- Classes are scheduled activities at a block
 DEFINE TABLE session SCHEMAFULL;
-    DEFINE FIELD activity ON TABLE session TYPE record;
+    DEFINE FIELD activity ON TABLE session TYPE record<activity>;
     DEFINE FIELD maxStudents ON TABLE session TYPE int;
-    DEFINE FIELD students ON TABLE session TYPE array<record>;
-    DEFINE FIELD attendees ON TABLE session TYPE array<record>;
-    DEFINE FIELD block ON TABLE session TYPE record;
+    DEFINE FIELD students ON TABLE session TYPE array<record<user>>;
+    DEFINE FIELD attendees ON TABLE session TYPE array<record<user>>;
+    DEFINE FIELD block ON TABLE session TYPE record<block>;
     -- We generate a random token that is used for students to mark attendance
     DEFINE FIELD token ON TABLE session TYPE string VALUE rand::int(111111, 999999);
