@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 </script>
 
 <svelte:head>
@@ -10,7 +11,7 @@
 	<p>Login with ClassLink</p>
 	<p><b>OR</b></p>
 	<p>Login with Email and Password</p>
-	<form class="login">
+	<form class="login" use:enhance method="post" action="?/signin">
 		<label for="email">Email</label>
 		<input type="text" id="username" name="username" />
 		<label for="password">Password</label>
