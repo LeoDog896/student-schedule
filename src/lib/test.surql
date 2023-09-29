@@ -3,7 +3,7 @@
 -- surreal import --conn http://localhost:8000 --user root --pass root --ns schedule --db schedule src/lib/test.surql
 
 -- Register API
-fn::registerAPI("Base API", "password");
+fn::registerAPI("webpage", "password");
 
 -- Our test organizations - we only need one, but we create a few for the login viewpage
 CREATE organization SET name = "School Alpha", signupType = "password", slug = "alpha";
