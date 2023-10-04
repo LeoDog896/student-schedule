@@ -1,5 +1,7 @@
 <script>
-	import StudentList from '$lib/components/StudentList.svelte';
+	import Attendance from '$lib/components/Attendance/Attendance.svelte';
+	import NumberCode from '$lib/components/Attendance/NumberCode.svelte';
 </script>
 
-<StudentList />
+<Attendance />
+<NumberCode />
