@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { get } from 'svelte/store';
+	import { get, writable } from 'svelte/store';
 	import DayScheduler from '$lib/components/DayScheduler.svelte';
 
 	//types
@@ -41,10 +41,12 @@
 	};
 </script>
 
+
+
 <div class="wrap">
 	<div class="display">
 		{#key selectedView}
-			<DayScheduler {visibleDays} {startDay} />
+			<DayScheduler {visibleDays} {startDay}/>
 		{/key}
 	</div>
 	<div class="controlBar">

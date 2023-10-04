@@ -1,5 +1,7 @@
 <script lang="ts">
+	import type { Stores } from 'svelte/store';
 	import Activity from './Activity.svelte';
+	import ActivityModal from './ActivityModal.svelte';
 	type activityList = [
 		{
 			// idk what to put here
@@ -11,6 +13,12 @@
 	const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 	export let visibleDays: number;
 	export let startDay: Date;
+	let activeModal = false;
+
+	let toggleModal = () => {
+		activeModal = !activeModal
+	}
+
 
 	//functions
 	let fixDate = (addDays: number) => {
@@ -22,6 +30,8 @@
 	};
 </script>
 
+<ActivityModal bind:show={activeModal}/>
+
 <div class="wrap">
 	<div class="days">
 		{#each Array(visibleDays) as day, i}
@@ -31,7 +41,7 @@
 				{#if i % 2 == 0}
 					<Activity />
 				{/if}
-				<button class="button">Join Activity</button>
+				<button class="button" on:click={toggleModal}>Join Activity</button>
 			</div>
 		{/each}
 	</div>
