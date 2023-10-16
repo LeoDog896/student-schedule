@@ -9,7 +9,7 @@
 
 	let students: Student[] = [
 		{
-			id: 'id',
+			id: crypto.randomUUID(),
 			firstName: 'John',
 			lastName: 'Doe',
 			class: 2024,
@@ -35,7 +35,10 @@
 				<td>{student.firstName}</td>
 				<td>{student.lastName}</td>
 				<td>{student.class}</td>
-				<td class:present={student.present} class:absent={!student.present}> Status </td>
+				<td class:present={student.present} class:absent={!student.present}>
+					{student.present ? 'Present' : 'Absent'}
+					<input type="checkbox" bind:checked={student.present} />
+				</td>
 			</tr>
 		{/each}
 	</tbody>

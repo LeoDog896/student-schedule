@@ -2,6 +2,7 @@
 	import type { Stores } from 'svelte/store';
 	import Activity from './Activity.svelte';
 	import ActivityModal from './ActivityModal.svelte';
+	import { fetchActivities } from './activities';
 	type activityList = [
 		{
 			// idk what to put here
@@ -38,7 +39,7 @@
 				<p>{fixDate(i)}</p>
 				<!-- Temporary, for display only -->
 				{#if i % 2 == 0}
-					<Activity />
+					<Activity activity={fetchActivities()[Math.floor(i / 2)]} />
 				{/if}
 				<button class="button" on:click={toggleModal}>Join Activity</button>
 			</div>

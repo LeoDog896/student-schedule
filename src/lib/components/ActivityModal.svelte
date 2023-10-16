@@ -1,55 +1,21 @@
 <script lang="ts">
 	import { cubicInOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
+	import { fetchActivities } from './activities';
+
+	const activities = fetchActivities();
 
 	import Fuse from 'fuse.js';
 
 	export let show = false;
-	type Acitvity = {
-		name: string;
-		leader: string;
-		location: string;
-		signups: number;
-		capacity: number;
-		type: string;
-	};
 
 	let searchFilter = '';
 
-	const unfilteredActivityList: Acitvity[] = [
-		{
-			name: 'Study Block',
-			leader: 'Manlunas',
-			location: 'Room 123',
-			signups: 5,
-			capacity: 20,
-			type: 'Study'
-		},
-		{
-			name: 'Movie Day',
-			leader: 'Tristan',
-			location: 'Room 301',
-			signups: 20,
-			capacity: 20,
-			type: 'Fun'
-		},
-		{
-			name: 'Game Fun Time',
-			leader: 'Will',
-			location: 'Room 121',
-			signups: 29,
-			capacity: 30,
-			type: 'Fun'
-		}
-	];
-
-	const fuse = new Fuse(unfilteredActivityList, {
+	const fuse = new Fuse(activities, {
 		keys: ['name', 'leader', 'location', 'type']
 	});
 
-	$: activityList = searchFilter
-		? fuse.search(searchFilter).map(({ item }) => item)
-		: unfilteredActivityList;
+	$: activityList = searchFilter ? fuse.search(searchFilter).map(({ item }) => item) : activities;
 
 	let closeModal = () => (show = false);
 </script>

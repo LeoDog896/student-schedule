@@ -1,20 +1,26 @@
+<script lang="ts">
+	import type { Activity as ActivityType } from './activities';
+
+	export let activity: ActivityType;
+</script>
+
 <div class="wrap">
-	<h2>Dylan's Study Block</h2>
+	<h2>{activity.name}</h2>
 	<div class="row">
 		<img src="/icons/instructor.svg" alt="instructor" />
-		<p>Dylan Myers</p>
+		<p>{activity.leader}</p>
 	</div>
 	<div class="row">
 		<img src="/icons/location.svg" alt="location" />
-		<p>Room 131</p>
+		<p>{activity.location}</p>
 	</div>
 	<div class="row">
 		<img src="/icons/group.svg" alt="location" />
-		<p>17/20</p>
+		<p>{activity.signups}/{activity.capacity}</p>
 	</div>
 	<div class="row">
 		<img src="/icons/activity.svg" alt="location" />
-		<p>Tutoring</p>
+		<p>{activity.type}</p>
 	</div>
 </div>
 
