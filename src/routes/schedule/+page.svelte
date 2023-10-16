@@ -41,12 +41,10 @@
 	};
 </script>
 
-
-
 <div class="wrap">
 	<div class="display">
 		{#key selectedView}
-			<DayScheduler {visibleDays} {startDay}/>
+			<DayScheduler {visibleDays} {startDay} />
 		{/key}
 	</div>
 	<div class="controlBar">

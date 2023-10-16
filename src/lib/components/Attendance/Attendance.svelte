@@ -1,5 +1,5 @@
 <script lang="ts">
-    interface Student {
+	interface Student {
 		id: string;
 		firstName: string;
 		lastName: string;
@@ -18,61 +18,58 @@
 	];
 </script>
 
-<style>
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    th,
-    td {
-        padding: 0.5rem;
-        border: 1px solid #ccc;
-    }
-
-    th {
-        background-color: #eee;
-    }
-
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-
-    tr:hover {
-        background-color: #ddd;
-    }
-
-    .present {
-        background-color: #b3ffb3;
-    }
-
-    .absent {
-        background-color: #ffb3b3;
-    }
-
-    </style>
-
 <table>
-    <thead>
-        <tr>
-            <th>Student ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Class</th>
-            <th>Present?</th>
-        </tr>
-    </thead>
-    <tbody>
-        {#each students as student}
-            <tr>
-                <td>{student.id}</td>
-                <td>{student.firstName}</td>
-                <td>{student.lastName}</td>
-                <td>{student.class}</td>
-                <td class:present={student.present} class:absent={!student.present}>
-                    Status
-                </td>
-            </tr>
-        {/each}
-    </tbody>
+	<thead>
+		<tr>
+			<th>Student ID</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Class</th>
+			<th>Present?</th>
+		</tr>
+	</thead>
+	<tbody>
+		{#each students as student}
+			<tr>
+				<td>{student.id}</td>
+				<td>{student.firstName}</td>
+				<td>{student.lastName}</td>
+				<td>{student.class}</td>
+				<td class:present={student.present} class:absent={!student.present}> Status </td>
+			</tr>
+		{/each}
+	</tbody>
 </table>
+
+<style>
+	table {
+		border-collapse: collapse;
+		width: 100%;
+	}
+
+	th,
+	td {
+		padding: 0.5rem;
+		border: 1px solid #ccc;
+	}
+
+	th {
+		background-color: #eee;
+	}
+
+	tr:nth-child(even) {
+		background-color: #f2f2f2;
+	}
+
+	tr:hover {
+		background-color: #ddd;
+	}
+
+	.present {
+		background-color: #b3ffb3;
+	}
+
+	.absent {
+		background-color: #ffb3b3;
+	}
+</style>

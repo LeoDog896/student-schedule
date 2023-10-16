@@ -2,8 +2,8 @@ import { Surreal } from 'surrealdb.js';
 import type { ActionResult } from 'surrealdb.js/script/types';
 import { browser } from '$app/environment';
 
-const url = "http://127.0.0.1:8000/";
-const rpc = url + "rpc";
+const url = 'http://127.0.0.1:8000/';
+const rpc = url + 'rpc';
 
 const db = new Surreal();
 
@@ -13,9 +13,9 @@ async function hookToAPI() {
 			NS: 'schedule',
 			DB: 'schedule',
 			SC: 'api',
-			description: "webpage",
-			password: "password"
-		})
+			description: 'webpage',
+			password: 'password'
+		});
 	}
 }
 
@@ -39,9 +39,7 @@ export async function signin(email: string, password: string): Promise<string | 
 			password
 		});
 	} else {
-		await fetch(url + "signin", {
-			
-		})
+		await fetch(url + 'signin', {});
 	}
 }
 
@@ -52,7 +50,7 @@ async function ready() {
 type Organization = {
 	name: string;
 	slug: string;
-	signupType: "password" | "classlink";
+	signupType: 'password' | 'classlink';
 };
 
 export async function getOrganizations(): Promise<ActionResult<Organization>[]> {

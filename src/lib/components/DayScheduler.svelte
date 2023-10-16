@@ -16,9 +16,8 @@
 	let activeModal = false;
 
 	let toggleModal = () => {
-		activeModal = !activeModal
-	}
-
+		activeModal = !activeModal;
+	};
 
 	//functions
 	let fixDate = (addDays: number) => {
@@ -30,7 +29,7 @@
 	};
 </script>
 
-<ActivityModal bind:show={activeModal}/>
+<ActivityModal bind:show={activeModal} />
 
 <div class="wrap">
 	<div class="days">
