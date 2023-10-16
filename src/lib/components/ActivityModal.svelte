@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { cubicInOut } from "svelte/easing";
-    import { fade } from "svelte/transition";
+	import { cubicInOut } from 'svelte/easing';
+	import { fade } from 'svelte/transition';
+
+	import Fuse from 'fuse.js';
 
 	export let show = false;
-	let bg: HTMLButtonElement;
 	type Acitvity = {
 		name: string;
 		leader: string;
@@ -12,7 +13,10 @@
 		capacity: number;
 		type: string;
 	};
-	let acitivtyList: Array<Acitvity> = [
+
+	let searchFilter = '';
+
+	const unfilteredActivityList: Acitvity[] = [
 		{
 			name: 'Study Block',
 			leader: 'Manlunas',
@@ -38,18 +42,27 @@
 			type: 'Fun'
 		}
 	];
-	let closeModal = (e: MouseEvent) => {
-		if (e.target == bg) {
-			show = false;
-		}
-	};
+
+	const fuse = new Fuse(unfilteredActivityList, {
+		keys: ['name', 'leader', 'location', 'type']
+	});
+
+	$: activityList = searchFilter
+		? fuse.search(searchFilter).map(({ item }) => item)
+		: unfilteredActivityList;
+
+	let closeModal = () => (show = false);
 </script>
 
 {#if show}
-	<button class="wrap" on:click={closeModal} bind:this={bg} transition:fade={{ easing: cubicInOut, duration: 200 }}>
+	<button
+		class="wrap"
+		on:click|self={closeModal}
+		transition:fade={{ easing: cubicInOut, duration: 200 }}
+	>
 		<div class="activityList" transition:fade={{ easing: cubicInOut, duration: 500 }}>
-			<input placeholder="Search for an activity" class="search" />
-			{#each acitivtyList as activityItem}
+			<input bind:value={searchFilter} placeholder="Search for an activity" class="search" />
+			{#each activityList as activityItem}
 				<div class="activity">
 					<h2>{activityItem.name} - {activityItem.leader}</h2>
 					<div class="quickDetails">
