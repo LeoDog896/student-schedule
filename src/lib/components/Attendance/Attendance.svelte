@@ -9,7 +9,7 @@
 
 	let students: Student[] = [
 		{
-			id: crypto.randomUUID(),
+			id: crypto.randomUUID().substring(0, 8),
 			firstName: 'John',
 			lastName: 'Doe',
 			class: 2024,

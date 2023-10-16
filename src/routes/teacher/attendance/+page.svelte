@@ -3,5 +3,18 @@
 	import NumberCode from '$lib/components/Attendance/NumberCode.svelte';
 </script>
 
-<Attendance />
-<NumberCode />
+<svelte:head>
+	<title>Attendance Management</title>
+</svelte:head>
+
+<div class="container">
+	<NumberCode />
+	<Attendance />
+</div>
+
+<style>
+	.container {
+		display: flex;
+		flex-direction: row;
+	}
+</style>

@@ -41,6 +41,10 @@
 	};
 </script>
 
+<svelte:head>
+	<title>Student Schedule</title>
+</svelte:head>
+
 <div class="wrap">
 	<div class="display">
 		{#key selectedView}
