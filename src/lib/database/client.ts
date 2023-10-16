@@ -2,6 +2,9 @@ import { Surreal } from 'surrealdb.js';
 import type { ActionResult } from 'surrealdb.js/script/types';
 import { browser } from '$app/environment';
 
+const url = "http://127.0.0.1:8000/";
+const rpc = url + "rpc";
+
 const db = new Surreal();
 
 async function hookToAPI() {
@@ -17,7 +20,7 @@ async function hookToAPI() {
 }
 
 async function connect() {
-	await db.connect('http://127.0.0.1:8000/rpc', {
+	await db.connect(rpc, {
 		ns: 'schedule',
 		db: 'schedule'
 	});
@@ -36,7 +39,9 @@ export async function signin(email: string, password: string): Promise<string | 
 			password
 		});
 	} else {
-		// TODO: send in scope from srv.
+		await fetch(url + "signin", {
+			
+		})
 	}
 }
 

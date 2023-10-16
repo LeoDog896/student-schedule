@@ -31,7 +31,7 @@ DEFINE TABLE user SCHEMAFULL
     DEFINE FIELD tokenExpires on TABLE user TYPE option<datetime>;
     DEFINE FIELD token ON TABLE user TYPE option<string>;
 
-    DEFINE SCOPE user SESSION 1d
+    DEFINE SCOPE user SESSION 1w
         -- For signin, you either need a Password or a Token, either for OAuth or signing in with our own platform.
         SIGNIN (SELECT * FROM user WHERE email = $email AND (token = $token OR crypto::argon2::compare($password, password)))
         -- Also, signup must happen with the `api` scope.
